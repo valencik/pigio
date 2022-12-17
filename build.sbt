@@ -1,6 +1,3 @@
-// https://typelevel.org/sbt-typelevel/faq.html#what-is-a-base-version-anyway
-ThisBuild / tlBaseVersion := "0.0" // your current series x.y
-
 ThisBuild / organization := "io.pig"
 ThisBuild / organizationName := "Pig.io"
 ThisBuild / startYear := Some(2022)
