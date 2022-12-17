@@ -9,6 +9,9 @@ ThisBuild / developers := List(
 // publish website from this branch
 ThisBuild / tlSitePublishBranch := Some("main")
 
+// do not publish artifacts
+ThisBuild / githubWorkflowPublishTargetBranches := Seq()
+
 // use JDK 11
 ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("11"))
 
