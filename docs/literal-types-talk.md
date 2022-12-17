@@ -1,10 +1,8 @@
----
-title: Goofing about with Scala Literal Types
-author: Andrew Valencik
-date: 2021-01-05
----
+Literal Types
+=============
 
-The following was originally prepared for a talk at the [Ottawa Scala Enthusiasts meetup.](https://www.meetup.com/Ottawa-Scala-Enthusiasts/events/265918533/)
+_The following was originally prepared for a talk at the [Ottawa Scala Enthusiasts meetup](https://web.archive.org/web/20211018003315/https://www.meetup.com/Ottawa-Scala-Enthusiasts/) back in November of 2019._
+
 
 ## Lockbox
 
