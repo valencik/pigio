@@ -57,8 +57,8 @@ case class Frame[K1 <: Singleton, K2 <: Singleton, V1, V2](
       val col: K => List[V]
   )
   object COL {
-    implicit val K1V1: COL[K1, V1] = COL((k: K1) => rows.map(_._1))
-    implicit val K2V2: COL[K2, V2] = COL((k: K2) => rows.map(_._2))
+    implicit val K1V1: COL[K1, V1] = COL((_: K1) => rows.map(_._1))
+    implicit val K2V2: COL[K2, V2] = COL((_: K2) => rows.map(_._2))
   }
 
   def col[A <: Singleton, B](k: A)(
@@ -96,7 +96,6 @@ f.col("oops")
 If we add the dynamic trait to the above `Frame` we can access columns as methods.
 
 ```scala mdoc
-import scala.language.dynamics
 case class DFrame[K1 <: Singleton, K2 <: Singleton, V1, V2](
     key1: K1,
     key2: K2)(
@@ -107,8 +106,8 @@ case class DFrame[K1 <: Singleton, K2 <: Singleton, V1, V2](
       val col: K => List[V]
   )
   object COL {
-    implicit val K1V1: COL[K1, V1] = COL((k: K1) => rows.map(_._1))
-    implicit val K2V2: COL[K2, V2] = COL((k: K2) => rows.map(_._2))
+    implicit val K1V1: COL[K1, V1] = COL((_: K1) => rows.map(_._1))
+    implicit val K2V2: COL[K2, V2] = COL((_: K2) => rows.map(_._2))
   }
 
   def col[A <: Singleton, B](k: A)(
