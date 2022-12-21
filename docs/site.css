@@ -22,6 +22,30 @@
   --gradient-bottom: #1d8991; /*base0C*/
 }
 
+/* UwUnicorn
+ * https://github.com/Misterio77/base16-uwunicorn-scheme
+ */
+:root {
+  --primary-color:   #78a38f; /*base0E*/
+  --secondary-color: #de5b44; /*base09*/
+  --primary-medium:  #46354a; /*base02*/
+  --primary-light:   #2f2a3f; /*base01*/
+  --text-color:      #eed5d9; /*base05*/
+  --bg-color:        #241b26; /*base00*/
+  --syntax-base1:    #2f2a3f; /*base01*/
+  --syntax-base2:    #7e5f83; /*base04*/
+  --syntax-base3:    #a84a73; /*base0A*/
+  --syntax-base4:    #d9c2c6; /*base06*/
+  --syntax-base5:    #e4ccd0; /*base07*/
+  --syntax-wheel1:   #78a38f; /*base0E*/
+  --syntax-wheel2:   #6a9eb5; /*base0D*/
+  --syntax-wheel3:   #a84a73; /*base0A*/
+  --syntax-wheel4:   #9c5fce; /*base0C*/
+  --syntax-wheel5:   #c965bf; /*base0B*/
+  --gradient-top:    #6a9eb5; /*base0D*/
+  --gradient-bottom: #9c5fce; /*base0C*/
+}
+
 /*Always display TOC*/
 @media (max-width: 1450px) {
   #page-nav {
