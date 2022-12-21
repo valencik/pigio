@@ -1,25 +1,25 @@
+/* Sakura
+ * https://github.com/Misterio77/base16-sakura-scheme
+ */
 :root {
-  --primary-color: #478ACC;
-  --primary-light: #F2F2F2;
-  --primary-medium: #55B4D4;
-  --secondary-color: #F07171;
-  --text-color: #5f5f5f;
-  --bg-color: #F2F2F2;
-  --gradient-top: #095269;
-  --gradient-bottom: #007c99;
-}
-
-:root {
-  --syntax-base1: #2a3236;
-  --syntax-base2: #8c878e;
-  --syntax-base3: #b2adb4;
-  --syntax-base4: #bddcee;
-  --syntax-base5: #e8e8e8;
-  --syntax-wheel1: #e28e93;
-  --syntax-wheel2: #ef9725;
-  --syntax-wheel3: #ffc66d;
-  --syntax-wheel4: #7fb971;
-  --syntax-wheel5: #4dbed4;
+  --primary-color:   #5e2180; /*base0E*/
+  --secondary-color: #f6661e; /*base09*/
+  --primary-medium:  #e0b6bf; /*base02*/
+  --primary-light:   #f8e2e7; /*base01*/
+  --text-color:      #564448; /*base05*/
+  --bg-color:        #feedf3; /*base00*/
+  --syntax-base1:    #f8e2e7; /*base01*/
+  --syntax-base2:    #e0b6bf; /*base02*/
+  --syntax-base3:    #665055; /*base0A*/
+  --syntax-base4:    #42383a; /*base06*/
+  --syntax-base5:    #33292b; /*base07*/
+  --syntax-wheel1:   #5e2180; /*base0E*/
+  --syntax-wheel2:   #df2d52; /*base08*/
+  --syntax-wheel3:   #c29461; /*base0A*/
+  --syntax-wheel4:   #2e916d; /*base0B*/
+  --syntax-wheel5:   #1d8991; /*base0C*/
+  --gradient-top:    #006e93; /*base0D*/
+  --gradient-bottom: #1d8991; /*base0C*/
 }
 
 /*Always display TOC*/
