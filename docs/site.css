@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #478ACC;
+  --primary-light: #F2F2F2;
+  --primary-medium: #55B4D4;
+  --secondary-color: #F07171;
+  --text-color: #5f5f5f;
+  --bg-color: #F2F2F2;
+  --gradient-top: #095269;
+  --gradient-bottom: #007c99;
+}
+
+:root {
+  --syntax-base1: #2a3236;
+  --syntax-base2: #8c878e;
+  --syntax-base3: #b2adb4;
+  --syntax-base4: #bddcee;
+  --syntax-base5: #e8e8e8;
+  --syntax-wheel1: #e28e93;
+  --syntax-wheel2: #ef9725;
+  --syntax-wheel3: #ffc66d;
+  --syntax-wheel4: #7fb971;
+  --syntax-wheel5: #4dbed4;
+}
+
+/*Always display TOC*/
+@media (max-width: 1450px) {
+  #page-nav {
+    display: block;
+    position: static;
+    background-color: transparent;
+    margin-left: auto;
+    width: 100%;
+    max-width: var(--content-width);
+    padding: 15px 45px 0px 45px;
+    margin-right: auto;
+  }
+}
+

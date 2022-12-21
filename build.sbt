@@ -21,13 +21,14 @@ ThisBuild / scalaVersion := Scala213 // the default Scala
 
 import laika.ast.Path.Root
 import laika.helium.config.{IconLink, HeliumIcon, TextLink, ThemeNavigationSection}
+import laika.theme.config.Color
 import cats.data.NonEmptyList
 lazy val docs = project
   .in(file("site"))
   .enablePlugins(TypelevelSitePlugin)
   .settings(
     tlSiteHelium := {
-      tlSiteHelium.value.site.darkMode.disabled.site
+      tlSiteHelium.value.site
         .topNavigationBar(
           homeLink = IconLink.external("https://github.com/valencik", HeliumIcon.home)
         )
