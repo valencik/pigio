@@ -1,0 +1,38 @@
+/* Sakura
+ * https://github.com/Misterio77/base16-sakura-scheme
+ */
+:root {
+  --primary-color:   #5e2180; /*base0E*/
+  --secondary-color: #f6661e; /*base09*/
+  --primary-medium:  #e0b6bf; /*base02*/
+  --primary-light:   #f8e2e7; /*base01*/
+  --text-color:      #564448; /*base05*/
+  --bg-color:        #feedf3; /*base00*/
+  --syntax-base1:    #f8e2e7; /*base01*/
+  --syntax-base2:    #e0b6bf; /*base02*/
+  --syntax-base3:    #665055; /*base0A*/
+  --syntax-base4:    #42383a; /*base06*/
+  --syntax-base5:    #33292b; /*base07*/
+  --syntax-wheel1:   #5e2180; /*base0E*/
+  --syntax-wheel2:   #df2d52; /*base08*/
+  --syntax-wheel3:   #c29461; /*base0A*/
+  --syntax-wheel4:   #2e916d; /*base0B*/
+  --syntax-wheel5:   #1d8991; /*base0C*/
+  --gradient-top:    #006e93; /*base0D*/
+  --gradient-bottom: #1d8991; /*base0C*/
+}
+
+/*Always display TOC*/
+@media (max-width: 1450px) {
+  #page-nav {
+    display: block;
+    position: static;
+    background-color: transparent;
+    margin-left: auto;
+    width: 100%;
+    max-width: var(--content-width);
+    padding: 15px 45px 0px 45px;
+    margin-right: auto;
+  }
+}
+
