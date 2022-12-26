@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Laika 0.19.0 + Helium Theme" />
+  <title>Vector Search</title>
+  
+  <meta name="author" content="Andrew Valencik"/>
+  
+  
+  <meta name="description" content="docs"/>
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css">
+  
+  <link rel="stylesheet" type="text/css" href="../helium/icofont.min.css" />
+    <link rel="stylesheet" type="text/css" href="../helium/laika-helium.css" />
+    <link rel="stylesheet" type="text/css" href="../site.css" />
+  <script src="../helium/laika-helium.js"></script>
+  
+  
+  <script> /* for avoiding page load transitions */ </script>
+</head>
+
+  <body>
+
+    <header id="top-bar">
+
+  <div class="row">
+    <a id="nav-icon">
+      <i class="icofont-laika navigationMenu" title="Navigation">&#xefa2;</i>
+    </a>
+    
+    
+  </div>
+
+  <a class="icon-link glyph-link" href="https://github.com/valencik"><i class="icofont-laika home" title="Home">&#xef47;</i></a>
+
+  <div class="row links">
+    
+    <a class="icon-link svg-link" href="https://github.com/valencik/pigio"><span class="github" title="Source Code"><svg class="svg-icon" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <g class="svg-shape">
+    <path d="M49.995,1c-27.609,-0 -49.995,22.386 -49.995,50.002c-0,22.09 14.325,40.83 34.194,47.444c2.501,0.458 3.413,-1.086 3.413,-2.412c0,-1.185 -0.043,-4.331 -0.067,-8.503c-13.908,3.021 -16.843,-6.704 -16.843,-6.704c-2.274,-5.773 -5.552,-7.311 -5.552,-7.311c-4.54,-3.103 0.344,-3.042 0.344,-3.042c5.018,0.356 7.658,5.154 7.658,5.154c4.46,7.64 11.704,5.433 14.552,4.156c0.454,-3.232 1.744,-5.436 3.174,-6.685c-11.102,-1.262 -22.775,-5.553 -22.775,-24.713c-0,-5.457 1.949,-9.92 5.147,-13.416c-0.516,-1.265 -2.231,-6.348 0.488,-13.233c0,0 4.199,-1.344 13.751,5.126c3.988,-1.108 8.266,-1.663 12.518,-1.682c4.245,0.019 8.523,0.574 12.517,1.682c9.546,-6.47 13.736,-5.126 13.736,-5.126c2.728,6.885 1.013,11.968 0.497,13.233c3.204,3.496 5.141,7.959 5.141,13.416c0,19.209 -11.691,23.436 -22.83,24.673c1.795,1.544 3.394,4.595 3.394,9.26c0,6.682 -0.061,12.076 -0.061,13.715c0,1.338 0.899,2.894 3.438,2.406c19.853,-6.627 34.166,-25.354 34.166,-47.438c-0,-27.616 -22.389,-50.002 -50.005,-50.002"/>
+  </g>
+</svg></span></a>
+    
+  </div>  
+
+</header>
+    
+    <nav id="sidebar">
+
+  <div class="row">
+    
+    <a class="icon-link svg-link" href="https://github.com/valencik/pigio"><span class="github" title="Source Code"><svg class="svg-icon" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <g class="svg-shape">
+    <path d="M49.995,1c-27.609,-0 -49.995,22.386 -49.995,50.002c-0,22.09 14.325,40.83 34.194,47.444c2.501,0.458 3.413,-1.086 3.413,-2.412c0,-1.185 -0.043,-4.331 -0.067,-8.503c-13.908,3.021 -16.843,-6.704 -16.843,-6.704c-2.274,-5.773 -5.552,-7.311 -5.552,-7.311c-4.54,-3.103 0.344,-3.042 0.344,-3.042c5.018,0.356 7.658,5.154 7.658,5.154c4.46,7.64 11.704,5.433 14.552,4.156c0.454,-3.232 1.744,-5.436 3.174,-6.685c-11.102,-1.262 -22.775,-5.553 -22.775,-24.713c-0,-5.457 1.949,-9.92 5.147,-13.416c-0.516,-1.265 -2.231,-6.348 0.488,-13.233c0,0 4.199,-1.344 13.751,5.126c3.988,-1.108 8.266,-1.663 12.518,-1.682c4.245,0.019 8.523,0.574 12.517,1.682c9.546,-6.47 13.736,-5.126 13.736,-5.126c2.728,6.885 1.013,11.968 0.497,13.233c3.204,3.496 5.141,7.959 5.141,13.416c0,19.209 -11.691,23.436 -22.83,24.673c1.795,1.544 3.394,4.595 3.394,9.26c0,6.682 -0.061,12.076 -0.061,13.715c0,1.338 0.899,2.894 3.438,2.406c19.853,-6.627 34.166,-25.354 34.166,-47.438c-0,-27.616 -22.389,-50.002 -50.005,-50.002"/>
+  </g>
+</svg></span></a>
+    
+  </div>
+
+  <ul class="nav-list">
+    <li class="level1 nav-leaf"><a href="../">Pig.io</a></li>
+    <li class="level1 nav-header">posts</li>
+    <li class="level2 nav-leaf"><a href="../posts/2022-12-23-sbt-typelevel-blog.html">Blogging With sbt-typelevel</a></li>
+    <li class="level2 nav-leaf"><a href="../posts/2022-12-17-literal-types.html">Literal Types</a></li>
+    <li class="level1 nav-node"><a href="index.html">Notes</a></li>
+    <li class="level2 active nav-leaf"><a href="#">Vector Search</a></li>
+  </ul>
+
+</nav>
+
+    <div id="container">
+
+      
+<nav id="page-nav">
+  <p class="header"><a href="#">Vector Search</a></p>
+
+  <ul class="nav-list">
+    <li class="level1 nav-leaf"><a href="#intro">Intro</a></li>
+    <li class="level1 nav-node"><a href="#reads">Reads</a></li>
+    <li class="level2 nav-leaf"><a href="#hnsw">HNSW</a></li>
+    <li class="level2 nav-leaf"><a href="#scann">ScaNN</a></li>
+  </ul>
+
+  <p class="footer"></p>
+</nav>
+
+
+      <main class="content">
+
+        <h1 id="vector-search" class="title">Vector Search</h1>
+        <p>The following is not meant to read like a blog post, it&#39;s really a collection of notes on something I&#39;ve been reading about lately.
+        It&#39;s an attempt to help me think about these things and understand them better. It may or may not be useful to others.</p>
+        
+        <h2 id="intro" class="section"><a class="anchor-link left" href="#intro"><i class="icofont-laika link">&#xef71;</i></a>Intro</h2>
+        <p>Lately I&#39;ve been reading about vector search.
+        In this context, vector search is about finding a vector <code>v</code> that is &quot;similar&quot; to some query vector <code>q</code>, where both <code>q</code> and <code>v</code> represent some other underlying data.</p>
+        <p>A corpus of documents we want to search over may be lifted into an embedding space by some process, the same process is applied to the input query, and then a similarity function in the embedding space determines relevant results.</p>
+        <p>As an example, consider a database of metadata on books:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">case</span><span> </span><span class="keyword">class</span><span> </span><span class="type-name">Book</span><span>(</span><span class="identifier">title</span><span>: </span><span class="type-name">String</span><span>, </span><span class="identifier">author</span><span>: </span><span class="type-name">String</span><span>)
+
+</span><span class="keyword">val</span><span> </span><span class="identifier">corpus</span><span>: </span><span class="type-name">List</span><span>[</span><span class="type-name">Book</span><span>] = </span><span class="type-name">List</span><span>(
+  </span><span class="type-name">Book</span><span>(</span><span class="string-literal">&quot;The Tale of Peter Rabbit&quot;</span><span>, </span><span class="string-literal">&quot;Beatrix Potter&quot;</span><span>),
+  </span><span class="type-name">Book</span><span>(</span><span class="string-literal">&quot;The Tale of Two Bad Mice&quot;</span><span>, </span><span class="string-literal">&quot;Beatrix Potter&quot;</span><span>),
+  </span><span class="type-name">Book</span><span>(</span><span class="string-literal">&quot;One Fish, Two Fish, Red Fish, Blue Fish&quot;</span><span>, </span><span class="string-literal">&quot;Dr. Suess&quot;</span><span>),
+  </span><span class="type-name">Book</span><span>(</span><span class="string-literal">&quot;Green Eggs and Ham&quot;</span><span>, </span><span class="string-literal">&quot;Dr. Suess&quot;</span><span>),
+)</span></code></pre>
+        <p>In classic keyword search, we might find results for a query by looking for books where the title contains words used in the query.</p>
+        <pre><code class="nohighlight"><span class="keyword">def</span><span> </span><span class="declaration-name">tokens</span><span>(</span><span class="identifier">input</span><span>: </span><span class="type-name">String</span><span>): </span><span class="type-name">Set</span><span>[</span><span class="type-name">String</span><span>] =
+  </span><span class="identifier">input</span><span>.</span><span class="identifier">toLowerCase</span><span>().</span><span class="identifier">split</span><span>(</span><span class="string-literal">&quot; &quot;</span><span>).</span><span class="identifier">toSet</span><span>
+
+</span><span class="keyword">def</span><span> </span><span class="declaration-name">search</span><span>(</span><span class="identifier">query</span><span>: </span><span class="type-name">String</span><span>): </span><span class="type-name">List</span><span>[</span><span class="type-name">Book</span><span>] =
+  </span><span class="identifier">corpus</span><span>.</span><span class="identifier">filter</span><span>(</span><span class="identifier">b</span><span> =&gt; 
+    </span><span class="identifier">tokens</span><span>(</span><span class="identifier">query</span><span>).</span><span class="identifier">subsetOf</span><span>(</span><span class="identifier">tokens</span><span>(</span><span class="identifier">b</span><span>.</span><span class="identifier">title</span><span>))
+  )
+
+</span><span class="keyword">val</span><span> </span><span class="identifier">twos</span><span> = </span><span class="identifier">search</span><span>(</span><span class="string-literal">&quot;two&quot;</span><span>)
+</span><span class="comment">// twos: List[Book] = List(
+//   Book(title = &quot;The Tale of Two Bad Mice&quot;, author = &quot;Beatrix Potter&quot;),
+//   Book(title = &quot;One Fish, Two Fish, Red Fish, Blue Fish&quot;, author = &quot;Dr. Suess&quot;)
+// )</span></code></pre>
+        <p>Here our documents are lifted into a space of token sets by the <code>tokens</code> function.
+        Each book is represented by the set of lowercased words in its title.
+        We lift our input query into the same space by tokenizing it as well.
+        Our similarity function is simply the <code>subsetOf</code> function on sets.</p>
+        <p>In vector search, our corpus of documents may be lifted into an embedding space by some machine learning model, such that we have a numeric vector to represent each document.
+        Instead of <code>tokens</code> we might have <code>vector</code>:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">def</span><span> </span><span class="declaration-name">vector</span><span>(</span><span class="identifier">input</span><span>: </span><span class="type-name">String</span><span>): </span><span class="type-name">Array</span><span>[</span><span class="type-name">Float</span><span>] = ???</span></code></pre>
+        <p>Our similarity function will also have to change, perhaps to cosine similarity, perhaps to something else...</p>
+        
+        <h2 id="reads" class="section"><a class="anchor-link left" href="#reads"><i class="icofont-laika link">&#xef71;</i></a>Reads</h2>
+        
+        <h3 id="hnsw" class="section"><a class="anchor-link left" href="#hnsw"><i class="icofont-laika link">&#xef71;</i></a>HNSW</h3>
+        <p><a href="https://lucene.apache.org/core/9_4_2/core/org/apache/lucene/util/hnsw/HnswGraph.html">Lucene uses Hierarchical Navigable Small World (HNSW) graphs</a> for its approximate nearest neighbor search.
+        I have not read or really skimmed <a href="https://arxiv.org/abs/1603.09320">the original paper</a> yet.
+        There is this <a href="https://arxiv.org/abs/1904.02077v1">comparative study on HNSW</a> that seems to express concerns over the claims from the original paper.
+        Additionally Lucene has a hard limit of 1024 dimensions and maintainers <a href="https://github.com/apache/lucene/pull/874">do not seem keen on increasing this</a>.</p>
+        
+        <h3 id="scann" class="section"><a class="anchor-link left" href="#scann"><i class="icofont-laika link">&#xef71;</i></a>ScaNN</h3>
+        <p><a href="https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html">ScaNN</a> is a vector similarity search library from Google that introduces a new quantization technique specifically aimed at preserving the maximum inner-product search.</p>
+        <blockquote>Previous vector quantization schemes quantized database elements with the aim of minimizing the average distance between each vector x and its quantized form x̃.
+        While this is a useful metric, optimizing for this is not equivalent to optimizing nearest-neighbor search accuracy.
+        The key idea behind our paper is that encodings with higher average distance may actually result in superior MIPS accuracy.</blockquote>
+
+        
+<hr class="footer-rule"/>
+<footer>
+  Site generated by <a href="https://planet42.github.io/Laika/">Laika</a> with the Helium theme.
+</footer>
+
+
+      </main>
+
+    </div>
+
+  </body>
+
+</html>

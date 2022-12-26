@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Laika 0.19.0 + Helium Theme" />
+  <title>Literal Types</title>
+  
+  <meta name="author" content="Andrew Valencik"/>
+  
+  
+  <meta name="description" content="docs"/>
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css">
+  
+  <link rel="stylesheet" type="text/css" href="../helium/icofont.min.css" />
+    <link rel="stylesheet" type="text/css" href="../helium/laika-helium.css" />
+    <link rel="stylesheet" type="text/css" href="../site.css" />
+  <script src="../helium/laika-helium.js"></script>
+  
+  
+  <script> /* for avoiding page load transitions */ </script>
+</head>
+
+  <body>
+
+    <header id="top-bar">
+
+  <div class="row">
+    <a id="nav-icon">
+      <i class="icofont-laika navigationMenu" title="Navigation">&#xefa2;</i>
+    </a>
+    
+    
+  </div>
+
+  <a class="icon-link glyph-link" href="https://github.com/valencik"><i class="icofont-laika home" title="Home">&#xef47;</i></a>
+
+  <div class="row links">
+    
+    <a class="icon-link svg-link" href="https://github.com/valencik/pigio"><span class="github" title="Source Code"><svg class="svg-icon" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <g class="svg-shape">
+    <path d="M49.995,1c-27.609,-0 -49.995,22.386 -49.995,50.002c-0,22.09 14.325,40.83 34.194,47.444c2.501,0.458 3.413,-1.086 3.413,-2.412c0,-1.185 -0.043,-4.331 -0.067,-8.503c-13.908,3.021 -16.843,-6.704 -16.843,-6.704c-2.274,-5.773 -5.552,-7.311 -5.552,-7.311c-4.54,-3.103 0.344,-3.042 0.344,-3.042c5.018,0.356 7.658,5.154 7.658,5.154c4.46,7.64 11.704,5.433 14.552,4.156c0.454,-3.232 1.744,-5.436 3.174,-6.685c-11.102,-1.262 -22.775,-5.553 -22.775,-24.713c-0,-5.457 1.949,-9.92 5.147,-13.416c-0.516,-1.265 -2.231,-6.348 0.488,-13.233c0,0 4.199,-1.344 13.751,5.126c3.988,-1.108 8.266,-1.663 12.518,-1.682c4.245,0.019 8.523,0.574 12.517,1.682c9.546,-6.47 13.736,-5.126 13.736,-5.126c2.728,6.885 1.013,11.968 0.497,13.233c3.204,3.496 5.141,7.959 5.141,13.416c0,19.209 -11.691,23.436 -22.83,24.673c1.795,1.544 3.394,4.595 3.394,9.26c0,6.682 -0.061,12.076 -0.061,13.715c0,1.338 0.899,2.894 3.438,2.406c19.853,-6.627 34.166,-25.354 34.166,-47.438c-0,-27.616 -22.389,-50.002 -50.005,-50.002"/>
+  </g>
+</svg></span></a>
+    
+  </div>  
+
+</header>
+    
+    <nav id="sidebar">
+
+  <div class="row">
+    
+    <a class="icon-link svg-link" href="https://github.com/valencik/pigio"><span class="github" title="Source Code"><svg class="svg-icon" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <g class="svg-shape">
+    <path d="M49.995,1c-27.609,-0 -49.995,22.386 -49.995,50.002c-0,22.09 14.325,40.83 34.194,47.444c2.501,0.458 3.413,-1.086 3.413,-2.412c0,-1.185 -0.043,-4.331 -0.067,-8.503c-13.908,3.021 -16.843,-6.704 -16.843,-6.704c-2.274,-5.773 -5.552,-7.311 -5.552,-7.311c-4.54,-3.103 0.344,-3.042 0.344,-3.042c5.018,0.356 7.658,5.154 7.658,5.154c4.46,7.64 11.704,5.433 14.552,4.156c0.454,-3.232 1.744,-5.436 3.174,-6.685c-11.102,-1.262 -22.775,-5.553 -22.775,-24.713c-0,-5.457 1.949,-9.92 5.147,-13.416c-0.516,-1.265 -2.231,-6.348 0.488,-13.233c0,0 4.199,-1.344 13.751,5.126c3.988,-1.108 8.266,-1.663 12.518,-1.682c4.245,0.019 8.523,0.574 12.517,1.682c9.546,-6.47 13.736,-5.126 13.736,-5.126c2.728,6.885 1.013,11.968 0.497,13.233c3.204,3.496 5.141,7.959 5.141,13.416c0,19.209 -11.691,23.436 -22.83,24.673c1.795,1.544 3.394,4.595 3.394,9.26c0,6.682 -0.061,12.076 -0.061,13.715c0,1.338 0.899,2.894 3.438,2.406c19.853,-6.627 34.166,-25.354 34.166,-47.438c-0,-27.616 -22.389,-50.002 -50.005,-50.002"/>
+  </g>
+</svg></span></a>
+    
+  </div>
+
+  <ul class="nav-list">
+    <li class="level1 nav-leaf"><a href="../">Pig.io</a></li>
+    <li class="level1 nav-header">posts</li>
+    <li class="level2 nav-leaf"><a href="2022-12-23-sbt-typelevel-blog.html">Blogging With sbt-typelevel</a></li>
+    <li class="level2 active nav-leaf"><a href="#">Literal Types</a></li>
+    <li class="level1 nav-node"><a href="../notes/">Notes</a></li>
+    <li class="level2 nav-leaf"><a href="../notes/vector-search.html">Vector Search</a></li>
+  </ul>
+
+</nav>
+
+    <div id="container">
+
+      
+<nav id="page-nav">
+  <p class="header"><a href="#">Literal Types</a></p>
+
+  <ul class="nav-list">
+    <li class="level1 nav-leaf"><a href="#lockbox">Lockbox</a></li>
+    <li class="level1 nav-leaf"><a href="#frame">Frame</a></li>
+    <li class="level1 nav-leaf"><a href="#frame-with-dynamic">Frame With Dynamic</a></li>
+  </ul>
+
+  <p class="footer"></p>
+</nav>
+
+
+      <main class="content">
+
+        <h1 id="literal-types" class="title">Literal Types</h1>
+        <p><em>The following was originally prepared for a talk at the <a href="https://web.archive.org/web/20211018003315/https://www.meetup.com/Ottawa-Scala-Enthusiasts/">Ottawa Scala Enthusiasts meetup</a> back in November of 2019.</em></p>
+        
+        <h2 id="lockbox" class="section"><a class="anchor-link left" href="#lockbox"><i class="icofont-laika link">&#xef71;</i></a>Lockbox</h2>
+        <p>We&#39;ll start off with a pretty silly example just to demonstrate using <code>Singleton</code> as an upper bound on a type parameter.
+        This tells the compiler to infer a singleton type at the call site.</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">case</span><span> </span><span class="keyword">class</span><span> </span><span class="type-name">Lockbox</span><span>[</span><span class="type-name">T</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">A</span><span>](</span><span class="identifier">key</span><span>: </span><span class="type-name">T</span><span>, </span><span class="identifier">message</span><span>: </span><span class="type-name">A</span><span>) {
+  </span><span class="keyword">def</span><span> </span><span class="declaration-name">unlock</span><span>(</span><span class="identifier">k</span><span>: </span><span class="type-name">T</span><span>): </span><span class="type-name">A</span><span> = </span><span class="identifier">message</span><span>
+  </span><span class="keyword">def</span><span> </span><span class="declaration-name">backdoor</span><span>(</span><span class="identifier">k</span><span>: </span><span class="string-literal">&quot;martin&quot;</span><span>): </span><span class="type-name">A</span><span> = </span><span class="identifier">message</span><span>
+}</span></code></pre>
+        <p>Let&#39;s create a <code>Lockbox</code>:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">box</span><span> = </span><span class="type-name">Lockbox</span><span>(</span><span class="string-literal">&quot;password&quot;</span><span>, </span><span class="string-literal">&quot;very secret msg&quot;</span><span>)</span></code></pre>
+        <p>If we unlock with the wrong password we get a type error:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">box</span><span>.</span><span class="identifier">unlock</span><span>(</span><span class="string-literal">&quot;wrong&quot;</span><span>)
+</span><span class="comment">// error: type mismatch;
+//  found   : String(&quot;wrong&quot;)
+//  required: &quot;password&quot;
+// box.unlock(&quot;wrong&quot;)
+//            ^^^^^^^</span></code></pre>
+        <p>Nice! The error message clearly shows the password it was expecting.
+        Hmmm, perhaps we shouldn&#39;t store anything too secret in here.</p>
+        <p>Let&#39;s check with the real key and the backdoor:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">box</span><span>.</span><span class="identifier">unlock</span><span>(</span><span class="string-literal">&quot;password&quot;</span><span>)
+</span><span class="comment">// res1: String = &quot;very secret msg&quot;
+</span><span>
+</span><span class="identifier">box</span><span>.</span><span class="identifier">backdoor</span><span>(</span><span class="string-literal">&quot;martin&quot;</span><span>)
+</span><span class="comment">// res2: String = &quot;very secret msg&quot;</span></code></pre>
+        <p>Works as expected.
+        To review, we can use the <code>Singleton</code> upper bound to infer a singleton type at call sites, and we can use literals like the string literal <code>&quot;martin&quot;</code> in type position.</p>
+        
+        <h2 id="frame" class="section"><a class="anchor-link left" href="#frame"><i class="icofont-laika link">&#xef71;</i></a>Frame</h2>
+        <p>A perhaps more compelling use of literal types is to provide a nice interface for interacting with a data frame.</p>
+        <pre><code class="nohighlight"><span class="keyword">case</span><span> </span><span class="keyword">class</span><span> </span><span class="type-name">Frame</span><span>[</span><span class="type-name">K1</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">K2</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">V1</span><span>, </span><span class="type-name">V2</span><span>](
+    </span><span class="identifier">key1</span><span>: </span><span class="type-name">K1</span><span>,
+    </span><span class="identifier">key2</span><span>: </span><span class="type-name">K2</span><span>)(
+    </span><span class="identifier">rows</span><span>: </span><span class="type-name">List</span><span>[</span><span class="type-name">Tuple2</span><span>[</span><span class="type-name">V1</span><span>, </span><span class="type-name">V2</span><span>]]
+) {
+
+  </span><span class="keyword">case</span><span> </span><span class="keyword">class</span><span> </span><span class="type-name">COL</span><span>[</span><span class="type-name">K</span><span>, </span><span class="type-name">V</span><span>](
+      </span><span class="keyword">val</span><span> </span><span class="identifier">col</span><span>: </span><span class="type-name">K</span><span> =&gt; </span><span class="type-name">List</span><span>[</span><span class="type-name">V</span><span>]
+  )
+  </span><span class="keyword">object</span><span> </span><span class="type-name">COL</span><span> {
+    </span><span class="keyword">implicit</span><span> </span><span class="keyword">val</span><span> </span><span class="type-name">K1V1</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">K1</span><span>, </span><span class="type-name">V1</span><span>] = </span><span class="type-name">COL</span><span>((</span><span class="identifier">_</span><span>: </span><span class="type-name">K1</span><span>) =&gt; </span><span class="identifier">rows</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span class="number-literal">._1</span><span>))
+    </span><span class="keyword">implicit</span><span> </span><span class="keyword">val</span><span> </span><span class="type-name">K2V2</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">K2</span><span>, </span><span class="type-name">V2</span><span>] = </span><span class="type-name">COL</span><span>((</span><span class="identifier">_</span><span>: </span><span class="type-name">K2</span><span>) =&gt; </span><span class="identifier">rows</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span class="number-literal">._2</span><span>))
+  }
+
+  </span><span class="keyword">def</span><span> </span><span class="declaration-name">col</span><span>[</span><span class="type-name">A</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">B</span><span>](</span><span class="identifier">k</span><span>: </span><span class="type-name">A</span><span>)(
+      </span><span class="keyword">implicit</span><span> </span><span class="identifier">columnKey</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">A</span><span>, </span><span class="type-name">B</span><span>]
+  ): </span><span class="type-name">List</span><span>[</span><span class="type-name">B</span><span>] =
+    </span><span class="identifier">columnKey</span><span>.</span><span class="identifier">col</span><span>(</span><span class="identifier">k</span><span>)
+}</span></code></pre>
+        <p>Let&#39;s make a frame:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">fruits</span><span> = </span><span class="type-name">List</span><span>((</span><span class="string-literal">&quot;apple&quot;</span><span>, </span><span class="number-literal">2</span><span>), (</span><span class="string-literal">&quot;orange&quot;</span><span>, </span><span class="number-literal">1</span><span>), (</span><span class="string-literal">&quot;banana&quot;</span><span>, </span><span class="number-literal">3</span><span>))
+</span><span class="comment">// fruits: List[(String, Int)] = List(
+//   (&quot;apple&quot;, 2),
+//   (&quot;orange&quot;, 1),
+//   (&quot;banana&quot;, 3)
+// )
+</span><span class="keyword">val</span><span> </span><span class="identifier">f</span><span> = </span><span class="type-name">Frame</span><span>(</span><span class="string-literal">&quot;name&quot;</span><span>, </span><span class="string-literal">&quot;amount&quot;</span><span>)(</span><span class="identifier">fruits</span><span>)
+</span><span class="comment">// f: Frame[&quot;name&quot;, &quot;amount&quot;, String, Int] = Frame(
+//   key1 = &quot;name&quot;,
+//   key2 = &quot;amount&quot;
+// )</span></code></pre>
+        <p>And then grab and use some columns:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">f</span><span>.</span><span class="identifier">col</span><span>(</span><span class="string-literal">&quot;amount&quot;</span><span>).</span><span class="identifier">sum</span><span>
+</span><span class="comment">// res3: Int = 6
+</span><span>
+</span><span class="identifier">f</span><span>.</span><span class="identifier">col</span><span>(</span><span class="string-literal">&quot;name&quot;</span><span>).</span><span class="identifier">sorted</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span>.</span><span class="identifier">toUpperCase</span><span>)
+</span><span class="comment">// res4: List[String] = List(&quot;APPLE&quot;, &quot;BANANA&quot;, &quot;ORANGE&quot;)</span></code></pre>
+        <p>Notice that we don&#39;t need to specify the type of the column, inference works out here.</p>
+        <p>If we try and access a column thatd doesn&#39;t exist we get an implicit search error:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">f</span><span>.</span><span class="identifier">col</span><span>(</span><span class="string-literal">&quot;oops&quot;</span><span>)
+</span><span class="comment">// error: could not find implicit value for parameter columnKey: repl.MdocSession.MdocApp.f.COL[&quot;oops&quot;,B]
+// f.col(&quot;oops&quot;)
+// ^^^^^^^^^^^^^</span></code></pre>
+        
+        <h2 id="frame-with-dynamic" class="section"><a class="anchor-link left" href="#frame-with-dynamic"><i class="icofont-laika link">&#xef71;</i></a>Frame With Dynamic</h2>
+        <p>If we add the dynamic trait to the above <code>Frame</code> we can access columns as methods.</p>
+        <pre><code class="nohighlight"><span class="keyword">case</span><span> </span><span class="keyword">class</span><span> </span><span class="type-name">DFrame</span><span>[</span><span class="type-name">K1</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">K2</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">V1</span><span>, </span><span class="type-name">V2</span><span>](
+    </span><span class="identifier">key1</span><span>: </span><span class="type-name">K1</span><span>,
+    </span><span class="identifier">key2</span><span>: </span><span class="type-name">K2</span><span>)(
+    </span><span class="identifier">rows</span><span>: </span><span class="type-name">List</span><span>[</span><span class="type-name">Tuple2</span><span>[</span><span class="type-name">V1</span><span>, </span><span class="type-name">V2</span><span>]]
+) </span><span class="keyword">extends</span><span> </span><span class="type-name">Dynamic</span><span> {
+
+  </span><span class="keyword">case</span><span> </span><span class="keyword">class</span><span> </span><span class="type-name">COL</span><span>[</span><span class="type-name">K</span><span>, </span><span class="type-name">V</span><span>](
+      </span><span class="keyword">val</span><span> </span><span class="identifier">col</span><span>: </span><span class="type-name">K</span><span> =&gt; </span><span class="type-name">List</span><span>[</span><span class="type-name">V</span><span>]
+  )
+  </span><span class="keyword">object</span><span> </span><span class="type-name">COL</span><span> {
+    </span><span class="keyword">implicit</span><span> </span><span class="keyword">val</span><span> </span><span class="type-name">K1V1</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">K1</span><span>, </span><span class="type-name">V1</span><span>] = </span><span class="type-name">COL</span><span>((</span><span class="identifier">_</span><span>: </span><span class="type-name">K1</span><span>) =&gt; </span><span class="identifier">rows</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span class="number-literal">._1</span><span>))
+    </span><span class="keyword">implicit</span><span> </span><span class="keyword">val</span><span> </span><span class="type-name">K2V2</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">K2</span><span>, </span><span class="type-name">V2</span><span>] = </span><span class="type-name">COL</span><span>((</span><span class="identifier">_</span><span>: </span><span class="type-name">K2</span><span>) =&gt; </span><span class="identifier">rows</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span class="number-literal">._2</span><span>))
+  }
+
+  </span><span class="keyword">def</span><span> </span><span class="declaration-name">col</span><span>[</span><span class="type-name">A</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">B</span><span>](</span><span class="identifier">k</span><span>: </span><span class="type-name">A</span><span>)(
+      </span><span class="keyword">implicit</span><span> </span><span class="identifier">columnKey</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">A</span><span>, </span><span class="type-name">B</span><span>]
+  ): </span><span class="type-name">List</span><span>[</span><span class="type-name">B</span><span>] =
+    </span><span class="identifier">columnKey</span><span>.</span><span class="identifier">col</span><span>(</span><span class="identifier">k</span><span>)
+
+  </span><span class="keyword">def</span><span> </span><span class="declaration-name">selectDynamic</span><span>[</span><span class="type-name">A</span><span> &lt;: </span><span class="type-name">Singleton</span><span>, </span><span class="type-name">B</span><span>](</span><span class="identifier">k</span><span>: </span><span class="type-name">A</span><span>)(</span><span class="keyword">implicit</span><span> </span><span class="identifier">kv</span><span>: </span><span class="type-name">COL</span><span>[</span><span class="type-name">A</span><span>, </span><span class="type-name">B</span><span>]): </span><span class="type-name">List</span><span>[</span><span class="type-name">B</span><span>] =
+    </span><span class="identifier">kv</span><span>.</span><span class="identifier">col</span><span>(</span><span class="identifier">k</span><span>)
+}</span></code></pre>
+        <p>Let&#39;s make a fancy <code>DFrame</code>:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">df</span><span> = </span><span class="type-name">DFrame</span><span>(</span><span class="string-literal">&quot;name&quot;</span><span>, </span><span class="string-literal">&quot;amount&quot;</span><span>)(</span><span class="identifier">fruits</span><span>)
+</span><span class="comment">// df: DFrame[&quot;name&quot;, &quot;amount&quot;, String, Int] = DFrame(
+//   key1 = &quot;name&quot;,
+//   key2 = &quot;amount&quot;
+// )</span></code></pre>
+        <p>Accessing a column now looks like this:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">df</span><span>.</span><span class="identifier">name</span><span>.</span><span class="identifier">filter</span><span>(</span><span class="identifier">_</span><span>.</span><span class="identifier">startsWith</span><span>(</span><span class="string-literal">&quot;b&quot;</span><span>))
+</span><span class="comment">// res6: List[String] = List(&quot;banana&quot;)</span></code></pre>
+        <p>With mistakes again failing to find an implicit:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">df</span><span>.</span><span class="identifier">oops</span><span>
+</span><span class="comment">// error: could not find implicit value for parameter kv: repl.MdocSession.MdocApp.df.COL[&quot;oops&quot;,B]
+// df.oops
+// ^^^^^^^</span></code></pre>
+
+        
+<hr class="footer-rule"/>
+<footer>
+  Site generated by <a href="https://planet42.github.io/Laika/">Laika</a> with the Helium theme.
+</footer>
+
+
+      </main>
+
+    </div>
+
+  </body>
+
+</html>
