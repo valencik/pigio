@@ -60,8 +60,15 @@ Our similarity function will also have to change, perhaps to cosine similarity, 
 
 [Lucene uses Hierarchical Navigable Small World (HNSW) graphs][lucene-hnsw] for its approximate nearest neighbor search.
 I have not read or really skimmed [the original paper][hnsw-paper] yet.
+
+HNSW appears to have issues scaling to high dimensions.
 There is this [comparative study on HNSW][hnsw-comparative] that seems to express concerns over the claims from the original paper.
-Additionally Lucene has a hard limit of 1024 dimensions and maintainers [do not seem keen on increasing this][lucene-dim-limit].
+Lucene has a hard limit of 1024 dimensions and maintainers [do not seem keen on increasing this][lucene-dim-limit].
+The performance problems of HNSW in Lucene appear to be such that an [alternative may be necessary][lucene-hnsw-alt].
+
+> I'm really concerned about us locking ourselves into HNSW, and we must...must get away from it (its like 1000x slower than it should be).
+
+It's worth noting that Elasticsearch performs quite poorly on the [approximate nearest neighbours benchmarks][ann-benchmarks] which is presumably using Lucene.
 
 
 ### ScaNN
@@ -79,3 +86,4 @@ Additionally Lucene has a hard limit of 1024 dimensions and maintainers [do not 
 [hnsw-paper]: https://arxiv.org/abs/1603.09320
 [hnsw-comparative]: https://arxiv.org/abs/1904.02077v1
 [lucene-dim-limit]: https://github.com/apache/lucene/pull/874
+[lucene-hnsw-alt]: https://github.com/apache/lucene/pull/11946#discussion_r1041043232
