@@ -74,6 +74,7 @@
     <li class="level2 nav-leaf"><a href="../posts/2022-12-23-sbt-typelevel-blog.html">Blogging With sbt-typelevel</a></li>
     <li class="level2 nav-leaf"><a href="../posts/2022-12-17-literal-types.html">Literal Types</a></li>
     <li class="level1 nav-node"><a href="index.html">Notes</a></li>
+    <li class="level2 nav-leaf"><a href="examples.html">Scala Examples</a></li>
     <li class="level2 active nav-leaf"><a href="#">Vector Search</a></li>
   </ul>
 
@@ -142,9 +143,13 @@
         
         <h3 id="hnsw" class="section"><a class="anchor-link left" href="#hnsw"><i class="icofont-laika link">&#xef71;</i></a>HNSW</h3>
         <p><a href="https://lucene.apache.org/core/9_4_2/core/org/apache/lucene/util/hnsw/HnswGraph.html">Lucene uses Hierarchical Navigable Small World (HNSW) graphs</a> for its approximate nearest neighbor search.
-        I have not read or really skimmed <a href="https://arxiv.org/abs/1603.09320">the original paper</a> yet.
+        I have not read or really skimmed <a href="https://arxiv.org/abs/1603.09320">the original paper</a> yet.</p>
+        <p>HNSW appears to have issues scaling to high dimensions.
         There is this <a href="https://arxiv.org/abs/1904.02077v1">comparative study on HNSW</a> that seems to express concerns over the claims from the original paper.
-        Additionally Lucene has a hard limit of 1024 dimensions and maintainers <a href="https://github.com/apache/lucene/pull/874">do not seem keen on increasing this</a>.</p>
+        Lucene has a hard limit of 1024 dimensions and maintainers <a href="https://github.com/apache/lucene/pull/874">do not seem keen on increasing this</a>.
+        The performance problems of HNSW in Lucene appear to be such that an <a href="https://github.com/apache/lucene/pull/11946#discussion_r1041043232">alternative may be necessary</a>.</p>
+        <blockquote>I&#39;m really concerned about us locking ourselves into HNSW, and we must...must get away from it (its like 1000x slower than it should be).</blockquote>
+        <p>It&#39;s worth noting that Elasticsearch performs quite poorly on the <a href="http://ann-benchmarks.com/">approximate nearest neighbours benchmarks</a> which is presumably using Lucene.</p>
         
         <h3 id="scann" class="section"><a class="anchor-link left" href="#scann"><i class="icofont-laika link">&#xef71;</i></a>ScaNN</h3>
         <p><a href="https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html">ScaNN</a> is a vector similarity search library from Google that introduces a new quantization technique specifically aimed at preserving the maximum inner-product search.</p>

@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="Laika 0.19.0 + Helium Theme" />
-  <title>Blogging With sbt-typelevel</title>
+  <title>Scala Examples</title>
   
   <meta name="author" content="Andrew Valencik"/>
   
@@ -70,12 +70,12 @@
   <ul class="nav-list">
     <li class="level1 nav-leaf"><a href="../">Pig.io</a></li>
     <li class="level1 nav-header">posts</li>
-    <li class="level2 nav-leaf"><a href="2022-12-26-writing-more.html">Writing More</a></li>
-    <li class="level2 active nav-leaf"><a href="#">Blogging With sbt-typelevel</a></li>
-    <li class="level2 nav-leaf"><a href="2022-12-17-literal-types.html">Literal Types</a></li>
-    <li class="level1 nav-node"><a href="../notes/">Notes</a></li>
-    <li class="level2 nav-leaf"><a href="../notes/examples.html">Scala Examples</a></li>
-    <li class="level2 nav-leaf"><a href="../notes/vector-search.html">Vector Search</a></li>
+    <li class="level2 nav-leaf"><a href="../posts/2022-12-26-writing-more.html">Writing More</a></li>
+    <li class="level2 nav-leaf"><a href="../posts/2022-12-23-sbt-typelevel-blog.html">Blogging With sbt-typelevel</a></li>
+    <li class="level2 nav-leaf"><a href="../posts/2022-12-17-literal-types.html">Literal Types</a></li>
+    <li class="level1 nav-node"><a href="index.html">Notes</a></li>
+    <li class="level2 active nav-leaf"><a href="#">Scala Examples</a></li>
+    <li class="level2 nav-leaf"><a href="vector-search.html">Vector Search</a></li>
   </ul>
 
 </nav>
@@ -84,10 +84,10 @@
 
       
 <nav id="page-nav">
-  <p class="header"><a href="#">Blogging With sbt-typelevel</a></p>
+  <p class="header"><a href="#">Scala Examples</a></p>
 
   <ul class="nav-list">
-    <li class="level1 nav-leaf"><a href="#setup">Setup</a></li>
+    <li class="level1 nav-leaf"><a href="#iterator-collect"><code>Iterator#collect</code></a></li>
   </ul>
 
   <p class="footer"></p>
@@ -96,29 +96,20 @@
 
       <main class="content">
 
-        <h1 id="blogging-with-sbt-typelevel" class="title">Blogging With sbt-typelevel</h1>
-        <blockquote>Andrew, this isn&#39;t a blog, it&#39;s like a documentation site for a non-existant library</blockquote>
-        <p>Well, yeah, sorta.
-         But the thing is, I want to have some scala code here and <a href="https://typelevel.org/sbt-typelevel/index.html">sbt-typelevel</a> just takes care of everything for me these days.
-         Look!</p>
-        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">name</span><span> = </span><span class="string-literal">&quot;Blog&quot;</span><span>
-</span><span class="comment">// name: String = &quot;Blog&quot;
-</span><span>
-</span><span class="string-literal">s&quot;Hi </span><span class="substitution">$name</span><span class="string-literal">, it&#39;s Andrew writing Scala!&quot;</span><span>
-</span><span class="comment">// res0: String = &quot;Hi Blog, it&#39;s Andrew writing Scala!&quot;</span></code></pre>
-        <blockquote>Thrilling</blockquote>
+        <h1 id="scala-examples" class="title">Scala Examples</h1>
+        <p>I find learning by example super helpful.
+        I love when documentation has lots of examples I can copy/paste and tweak.</p>
+        <p>With that in mind, I&#39;m going to collect some examples here that don&#39;t really fit into a large post or note.
+        Maybe they&#39;ll be useful.</p>
         
-        <h2 id="setup" class="section"><a class="anchor-link left" href="#setup"><i class="icofont-laika link">&#xef71;</i></a>Setup</h2>
-        <p>To use <a href="https://typelevel.org/sbt-typelevel/index.html">sbt-typelevel</a> as a static blog you&#39;ll likely want to set it up slightly differently from a regular library.</p>
-        <p>I started with the following <code>project/plugins.sbt</code>:</p>
-        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">addSbtPlugin</span><span>(</span><span class="string-literal">&quot;org.typelevel&quot;</span><span> % </span><span class="string-literal">&quot;sbt-typelevel-site&quot;</span><span> % </span><span class="string-literal">&quot;0.5.0-M8&quot;</span><span>)
-</span><span class="identifier">addSbtPlugin</span><span>(</span><span class="string-literal">&quot;org.typelevel&quot;</span><span> % </span><span class="string-literal">&quot;sbt-typelevel-settings&quot;</span><span> % </span><span class="string-literal">&quot;0.5.0-M8&quot;</span><span>)</span></code></pre>
-        <p>You can get by with just <code>sbt-typelevel-site</code>, which will give you the <code>docs/tlSitePreview</code> command to build and preview you site.
-        But adding <code>sbt-typelevel-settings</code> is nice as it sets good scalac options even for your mdoc build.</p>
-        <p>And in order to disable publishing artifacts altogether you&#39;ll want to doing something like the following in your <code>build.sbt</code>:</p>
-        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="type-name">ThisBuild</span><span> / </span><span class="identifier">githubWorkflowPublishTargetBranches</span><span> := </span><span class="type-name">Seq</span><span>()</span></code></pre>
-        <p>Finally, remember to actually enable GitHub Pages in your repo, it&#39;s in Settings &gt; Pages.
-        I always forget this step.</p>
+        <h2 id="iterator-collect" class="section"><a class="anchor-link left" href="#iterator-collect"><i class="icofont-laika link">&#xef71;</i></a><code>Iterator#collect</code></h2>
+        <p><code>collect</code> is such a handy method, but I always seem to forget about it.
+        If you&#39;d like to filter and map a collection in a type safe manner, check out <code>collect</code>!</p>
+        <p>Consider a <code>List[(String, Option[Int])]</code>:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">xs</span><span> = </span><span class="type-name">List</span><span>((</span><span class="string-literal">&quot;hi&quot;</span><span>, </span><span class="type-name">Some</span><span>(</span><span class="number-literal">1</span><span>)), (</span><span class="string-literal">&quot;bye&quot;</span><span>, </span><span class="type-name">None</span><span>))</span></code></pre>
+        <p>You&#39;d like to manipulate only the values where the <code>Option</code> is defined:</p>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">xs</span><span>.</span><span class="identifier">collect</span><span>{</span><span class="keyword">case</span><span> (</span><span class="identifier">msg</span><span>, </span><span class="type-name">Some</span><span>(</span><span class="identifier">n</span><span>)) =&gt; (</span><span class="identifier">msg</span><span>, </span><span class="identifier">n</span><span>*</span><span class="number-literal">100</span><span>)}
+</span><span class="comment">// res0: List[(String, Int)] = List((&quot;hi&quot;, 100))</span></code></pre>
 
         
 <hr class="footer-rule"/>
