@@ -27,10 +27,13 @@ lazy val docs = project
   .in(file("site"))
   .enablePlugins(TypelevelSitePlugin)
   .settings(
+    libraryDependencies ++= Seq(
+      "co.fs2" %% "fs2-core" % "3.5.0"
+    ),
     tlSiteHelium := {
       tlSiteHelium.value.site
         .topNavigationBar(
           homeLink = IconLink.external("https://github.com/valencik", HeliumIcon.home)
         )
-    }
+    },
   )
