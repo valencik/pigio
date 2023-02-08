@@ -16,13 +16,18 @@ If you'd like to filter and map a collection in a type safe manner, check out `c
 Consider a `List[(String, Option[Int])]`:
 
 ```scala mdoc:silent
-val xs = List(("hi", Some(1)), ("bye", None))
+val xs = List(
+  ("hi", Some(1)),
+  ("bye", None)
+)
 ```
 
 You'd like to manipulate only the values where the `Option` is defined:
 
-```scala mdoc
-xs.collect{case (msg, Some(n)) => (msg, n*100)}
+```scala mdoc:width=36
+xs.collect {
+  case (msg, Some(n)) => (msg, n*100)
+}
 ```
 
 
@@ -38,12 +43,12 @@ Here we implement a function similar to `zipWithIndex` but the index is one the 
 import fs2.{Pure, Stream}
 
 def iZip[F[_], A](s: Stream[F, A]): Stream[F, (Int, A)] =
-  s.scanChunks(1) { (index, c) =>
+  s.scanChunks(1) { (index, chunk) =>
     var idx = index
-    val out = c.map { o =>
-      val r = (idx, o)
+    val out = chunk.map { elem =>
+      val res = (idx, elem)
       idx += 1
-      r
+      res
     }
     (idx, out) // new state and value
   }
@@ -53,6 +58,6 @@ val s: Stream[Pure, String] =
 ```
 
 e.g.
-```scala mdoc
+```scala mdoc:width=36
   iZip(s).toList
 ```
