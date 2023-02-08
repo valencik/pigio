@@ -107,10 +107,17 @@
         <p><code>collect</code> is such a handy method, but I always seem to forget about it.
         If you&#39;d like to filter and map a collection in a type safe manner, check out <code>collect</code>!</p>
         <p>Consider a <code>List[(String, Option[Int])]</code>:</p>
-        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">xs</span><span> = </span><span class="type-name">List</span><span>((</span><span class="string-literal">&quot;hi&quot;</span><span>, </span><span class="type-name">Some</span><span>(</span><span class="number-literal">1</span><span>)), (</span><span class="string-literal">&quot;bye&quot;</span><span>, </span><span class="type-name">None</span><span>))</span></code></pre>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">xs</span><span> = </span><span class="type-name">List</span><span>(
+  (</span><span class="string-literal">&quot;hi&quot;</span><span>, </span><span class="type-name">Some</span><span>(</span><span class="number-literal">1</span><span>)),
+  (</span><span class="string-literal">&quot;bye&quot;</span><span>, </span><span class="type-name">None</span><span>)
+)</span></code></pre>
         <p>You&#39;d like to manipulate only the values where the <code>Option</code> is defined:</p>
-        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">xs</span><span>.</span><span class="identifier">collect</span><span>{</span><span class="keyword">case</span><span> (</span><span class="identifier">msg</span><span>, </span><span class="type-name">Some</span><span>(</span><span class="identifier">n</span><span>)) =&gt; (</span><span class="identifier">msg</span><span>, </span><span class="identifier">n</span><span>*</span><span class="number-literal">100</span><span>)}
-</span><span class="comment">// res0: List[(String, Int)] = List((&quot;hi&quot;, 100))</span></code></pre>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">xs</span><span>.</span><span class="identifier">collect</span><span> {
+  </span><span class="keyword">case</span><span> (</span><span class="identifier">msg</span><span>, </span><span class="type-name">Some</span><span>(</span><span class="identifier">n</span><span>)) =&gt; (</span><span class="identifier">msg</span><span>, </span><span class="identifier">n</span><span>*</span><span class="number-literal">100</span><span>)
+}
+</span><span class="comment">// res0: List[(String, Int)] = List(
+//   (&quot;hi&quot;, 100)
+// )</span></code></pre>
         
         <h2 id="stream-scanchunks" class="section"><a class="anchor-link left" href="#stream-scanchunks"><i class="icofont-laika link">&#xef71;</i></a><code>Stream#scanChunks</code></h2>
         <p>A lot of stateful methods in fs2&#39;s <code>Stream</code> are implemented using <code>scanChunks</code> for efficiency.
@@ -120,12 +127,12 @@
         <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">fs2</span><span>.{</span><span class="type-name">Pure</span><span>, </span><span class="type-name">Stream</span><span>}
 
 </span><span class="keyword">def</span><span> </span><span class="declaration-name">iZip</span><span>[</span><span class="type-name">F</span><span>[</span><span class="identifier">_</span><span>], </span><span class="type-name">A</span><span>](</span><span class="identifier">s</span><span>: </span><span class="type-name">Stream</span><span>[</span><span class="type-name">F</span><span>, </span><span class="type-name">A</span><span>]): </span><span class="type-name">Stream</span><span>[</span><span class="type-name">F</span><span>, (</span><span class="type-name">Int</span><span>, </span><span class="type-name">A</span><span>)] =
-  </span><span class="identifier">s</span><span>.</span><span class="identifier">scanChunks</span><span>(</span><span class="number-literal">1</span><span>) { (</span><span class="identifier">index</span><span>, </span><span class="identifier">c</span><span>) =&gt;
+  </span><span class="identifier">s</span><span>.</span><span class="identifier">scanChunks</span><span>(</span><span class="number-literal">1</span><span>) { (</span><span class="identifier">index</span><span>, </span><span class="identifier">chunk</span><span>) =&gt;
     </span><span class="keyword">var</span><span> </span><span class="identifier">idx</span><span> = </span><span class="identifier">index</span><span>
-    </span><span class="keyword">val</span><span> </span><span class="identifier">out</span><span> = </span><span class="identifier">c</span><span>.</span><span class="identifier">map</span><span> { </span><span class="identifier">o</span><span> =&gt;
-      </span><span class="keyword">val</span><span> </span><span class="identifier">r</span><span> = (</span><span class="identifier">idx</span><span>, </span><span class="identifier">o</span><span>)
+    </span><span class="keyword">val</span><span> </span><span class="identifier">out</span><span> = </span><span class="identifier">chunk</span><span>.</span><span class="identifier">map</span><span> { </span><span class="identifier">elem</span><span> =&gt;
+      </span><span class="keyword">val</span><span> </span><span class="identifier">res</span><span> = (</span><span class="identifier">idx</span><span>, </span><span class="identifier">elem</span><span>)
       </span><span class="identifier">idx</span><span> += </span><span class="number-literal">1</span><span>
-      </span><span class="identifier">r</span><span>
+      </span><span class="identifier">res</span><span>
     }
     (</span><span class="identifier">idx</span><span>, </span><span class="identifier">out</span><span>) </span><span class="comment">// new state and value
 </span><span>  }
@@ -134,7 +141,11 @@
   </span><span class="type-name">Stream</span><span>(</span><span class="string-literal">&quot;hi&quot;</span><span>, </span><span class="string-literal">&quot;hello&quot;</span><span>, </span><span class="string-literal">&quot;bye!&quot;</span><span>)</span></code></pre>
         <p>e.g.</p>
         <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">iZip</span><span>(</span><span class="identifier">s</span><span>).</span><span class="identifier">toList</span><span>
-</span><span class="comment">// res1: List[(Int, String)] = List((1, &quot;hi&quot;), (2, &quot;hello&quot;), (3, &quot;bye!&quot;))</span></code></pre>
+</span><span class="comment">// res1: List[(Int, String)] = List(
+//   (1, &quot;hi&quot;),
+//   (2, &quot;hello&quot;),
+//   (3, &quot;bye!&quot;)
+// )</span></code></pre>
 
         
 <hr class="footer-rule"/>
