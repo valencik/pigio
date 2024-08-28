@@ -117,33 +117,6 @@ We had to do this manually, which has given me a new appreciation for how much o
 
 Finished to first simple implementation of a printer for [Lucille][lucille].
 
-### Dec. 19
-
-### Dec. 20
-
-### Dec. 21
-
-### Dec. 22
-
-### Dec. 23
-
-### Dec. 24
-
-### Dec. 25
-
-### Dec. 26
-
-### Dec. 27
-
-### Dec. 28
-
-### Dec. 29
-
-### Dec. 30
-
-### Dec. 31
-
-
 
 [lucille]: https://github.com/cozydev-pink/lucille
 [sbt-typelevel]: https://github.com/typelevel/sbt-typelevel
